@@ -1,0 +1,19 @@
+﻿@page "{id}"
+@model EditUserModel
+
+<h2>Edit User</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="User.Id" />
+    <div>
+        <label asp-for="User.Email"></label>
+        <input asp-for="User.Email" />
+
+    </div>
+     <div>
+        <label asp-for="User.UserName"></label>
+        <input asp-for="User.UserName" />
+    </div>
+
+
+</form>

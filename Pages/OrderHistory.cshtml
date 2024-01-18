@@ -1,0 +1,22 @@
+﻿@page
+@model OrderHistoryModel
+
+<h2>Order History</h2>
+
+@if (Model.Orders.Count > 0)
+{
+    foreach (var order in Model.Orders)
+    {
+        <h3>Order ID: @order.OrderId - Date: @order.OrderDate.ToString("yyyy-MM-dd")</h3>
+        <ul>
+            @foreach (var item in order.OrderItems)
+            {
+                <li>@item.FoodItem.Name - Quantity: @item.Quantity - Price: $@item.Price</li>
+            }
+        </ul>
+    }
+}
+else
+{
+    <p>You have no past orders.</p>
+}

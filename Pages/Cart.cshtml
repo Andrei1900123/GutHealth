@@ -1,0 +1,45 @@
+﻿@page
+@model CartModel
+
+<h2>Your Shopping Cart</h2>
+
+@if (Model.CartItems.Count > 0)
+{
+    <form method="post">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th></th> <!-- Actions -->
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.CartItems)
+                {
+                    <tr>
+                        <td>@item.FoodItem.Name</td>
+                        <td>
+                            <input type="number" name="quantity" value="@item.Quantity" min="1" />
+                            <button type="submit" asp-page-handler="UpdateQuantity" asp-route-cartItemId="@item.CartItemId">Update</button>
+                        </td>
+                        <td>$@item.FoodItem.Price</td>
+                        <td>$@(item.FoodItem.Price * item.Quantity)</td>
+                        <td>
+                            <button type="submit" asp-page-handler="RemoveFromCart" asp-route-cartItemId="@item.CartItemId">Remove</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </form>
+
+    <a asp-page="/Checkout" class="btn btn-primary">Proceed to Checkout</a>
+}
+else
+{
+    <p>Your cart is empty.</p>
+}

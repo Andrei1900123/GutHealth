@@ -1,0 +1,10 @@
+﻿@page "{id}"
+@model DeleteUserModel
+
+<h2>Delete User</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="User.Id" />
+    <p>Are you sure you want to delete user @Model.User.Email?</p>
+    <input type="submit" value="Delete" />
+</form>

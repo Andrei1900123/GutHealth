@@ -1,0 +1,25 @@
+﻿@page
+@model UserListModel
+
+<h2>User List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>
+                    <a asp-page="/Admin/EditUser" asp-route-id="@user.Id">Edit</a>
+                    <a asp-page="/Admin/DeleteUser" asp-route-id="@user.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

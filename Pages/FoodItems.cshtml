@@ -1,0 +1,16 @@
+﻿@page
+@model FoodItemsModel
+
+<h2>Food Items</h2>
+
+@foreach (var item in Model.FoodItemList)
+{
+    <div>
+        <h3>@item.Name</h3>
+        <p>@item.Description</p>
+        <p>Price: $@item.Price</p>
+        <form method="post" asp-page-handler="AddToCart" asp-route-foodItemId="@item.FoodItemId">
+            <button type="submit" class="btn btn-primary">Add to Cart</button>
+        </form>
+    </div>
+}

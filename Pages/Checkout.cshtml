@@ -1,0 +1,17 @@
+﻿@page
+@model CheckoutModel
+
+<h2>Checkout</h2>
+
+@if (Model.CartItems.Count > 0)
+{
+    <p>Order Total: $@Model.OrderTotal</p>
+    <p>Are you sure you want to complete the order?</p>
+    <form method="post">
+        <button type="submit" class="btn btn-primary">Complete Order</button>
+    </form>
+}
+else
+{
+    <p>Your cart is empty.</p>
+}

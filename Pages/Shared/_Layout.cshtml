@@ -17,16 +17,42 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    
+                    <a class="nav-link" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/">Logout</a>
+                }
+                else
+                {
+                    <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                    <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                }
+                
+                @if (User.IsInRole("Admin"))
+                {
+                    
+                    <!-- Admin-specific links -->
+                    
+                    <a class="nav-link" asp-page="/Admin/users/UserList">User Management</a>
+                    <a class="nav-link" asp-page="/Admin/items/Index">Food Items</a>
+                    <a class="nav-link" asp-page="/Admin/categories/Index">Food Categories</a>
+                    <a class="nav-link" asp-page="/Admin/orders/Index">Orders</a>
+
+
+
+                }
+                else if (User.Identity.IsAuthenticated)
+                {
+                    <! -- User-specific links -->
+                    <a class="nav-link" asp-page="/FoodItems">Food</a>
+                    <a class="nav-link" asp-page="/Cart">Cart</a>
+                    <a class="nav-link" asp-page="/Checkout">Checkout</a>
+                    <a class="nav-link" asp-page="/OrderHistory">Orders</a>
+
+                }
+
+                
             </div>
         </nav>
     </header>
